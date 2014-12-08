@@ -1,7 +1,6 @@
-
 #!/usr/local/bin/python
 import json
-import subprocess
+import hashlib
 import os.path
 import os
 import time
@@ -44,11 +43,11 @@ def get_users():
                     # determines whether the file has been edited
                     hash = hashlib.new('sha256')
                     with open(index) as f:
-                      hash.update(f.read())
+                        hash.update(f.read())
                         if hash.hexdigest() in UNEDITED_INDEX_DIGESTS:
-                          edited = 0
+                            edited = 0
                         else:
-                          edited = 1
+                            edited = 1
 
                     # determines wether the user is a member of the ring,
                     # i.e., whether they have included the ring html in
@@ -58,7 +57,7 @@ def get_users():
                     else:
                         ringmember = 0
 
-                except:
+                except Exception, e:
                     continue  # Ignore error. Continue to next user.
 
                 # Adds username as a key to the dictionary
