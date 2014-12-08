@@ -13,6 +13,11 @@
 <h1>join the <a href="http://tilde.town">tilde.town</a> ~ring!</h1>
 
 <p>tilde.town ~users can join by pasting this html code in their <code>index.html</code>:</p>
+<!-- I think this is probably an awful way to distribute and store the --
+  -- html because any change to the html has to be copied and pasted --
+  -- here. I should probably put in some js code that will copy the --
+  -- html and put it in a text field, then we just update the html and --
+  -- the code to copy-paste will be updated automatically. -->
 
     <pre style="background-color:white; font-size:70%;
     width:850px;"><code>
@@ -25,39 +30,32 @@
     &lt;/div&gt;
     </code></pre>
 
-    <p>you can alter or edit the html in any way you choose, with the
-      exception of four elements.
+    <p>You can alter or edit the html without breaking anything, with the
+      exception of four elements:
       <ul>
         <li>the random ~user link url and id</li>
         <li>the random ~box link url and id</li>
+        <li>the <code>&lt;script&gt;</code> tag and contents must be
+        included somewhere on your page</li>
         <li>the join link url</li>
-        <li>the script tag must be included somewhere on your page</li>
       </ul>
-      for an example of the flexibility of the ~ring parts, find
+      For an example of the flexibility of the ~ring parts, find
       <a href="http://tilde.town/~selfsame">~selfsame</a>'s
-      implementation!
-</p>
+      implementation.
+    </p>
 
-    <p>Please note: this is still in beta. Please email ~um@tilde.town or ~dan@tilde.town if there are
+    <p>Note: this is still in beta. Please email ~um@tilde.town or ~dan@tilde.town if there are
       any problems, or catch us in irc.</p>
 
       <p> Looking for a link to any random tilde.town site? <a href="http://tilde.town/~nick/">~nick</a> has that!</p>
-    <p>&lt;3,</p>
-    <p><a href="http://tilde.town/~um">~um<a/></p>
+    <p><a href="http://tilde.town/~um">~um<a/> and <a href="http://tilde.town/~dan/">~dan</a></p>
    <h2>refine, reimplement, or extend the tilde.town ~ring!</h2>
 
-    <p>the ~ring consists of the above html, a javascript file, and
+    <p>The ~ring consists of the above html, a javascript file, and
       <a href="http://tilde.town/~dan/">~dan</a>'s python script
-      that gathers ~users data into a json file. the python isn't
-      available publicly yet, but you can find it in tilde.town. the
-      rest is here:</p>
-
-   <ul>
-       <li><a href="https://github.com/aBathologist/-um/blob/master/public_html/js/tilde_ring.js">the JavaScript</a></li>
-       <li><a href="https://github.com/aBathologist/-um/blob/master/public_html/tilde_ring/tilde_ring.html">the HTML</a></li>
-       <li><a href="http://tilde.town/~dan/users.json">the JSON (updated by the minute)</a></li>
-   </ul>
-   
+      that gathers ~users data into a json file. The code is
+      available on our <a href="https://github.com/aBathologist/tildetown_ring">github repository</a>.
+      If you have ideas, please suggest, fork, request pulls, etc.</p>
   </body>
 </html>
 
