@@ -6,6 +6,11 @@ import os.path
 import os
 import time
 
+# sha256sum /etc/skel/public_html/index.html
+UNEDITED_INDEX_DIGESTS = [
+    '1a12a62bcfcf2f488e927d8b1bd81bbb1952e0d6ae69354b2959f2e80e4359a8',
+]
+
 def get_users():
     users = {}
     url = "http://tilde.town/~"
@@ -37,13 +42,13 @@ def get_users():
                     modtime     = time.ctime(os.path.getmtime(index))
 
                     # determines whether the file has been edited
-                    # ( I would think that the then ... else branches
-                    #   should be switched, but that gives an inverted
-                    #   result. WTF? ) - um
-                    if modtime == createdtime:
-                        edited = 1 # will be read as "false" by javascript
-                    else:
-                        edited = 0 # will be read as "true" by javascript
+                    hash = hashlib.new('sha256')
+                    with open(index) as f:
+                      hash.update(f.read())
+                        if hash.hexdigest() in UNEDITED_INDEX_DIGESTS:
+                          edited = 0
+                        else:
+                          edited = 1
 
                     # determines wether the user is a member of the ring,
                     # i.e., whether they have included the ring html in
