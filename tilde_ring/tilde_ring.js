@@ -3,27 +3,32 @@
 //  written by ~um@tilde.town (@shon_feder)
 //  with lots of help form ~dan, ~karlen, ~datagrok, ~nick, ~vilmibm
 //  and tilde.town in general.
- 
+
 var tildeboxlist_urls = 'http://tilde.town/~um/json/othertildes.json';
 var userlist_url = 'http://tilde.town/~dan/users.json';
 
 // main functions, run when script loads.
 window.onload = function() {
-    add_event_listeners(); 
+    add_event_listeners();
     link_tilde_ring();
 };
 
 function link_tilde_ring() {
     link_random_tildebox();
     link_random_user();
+    link_next_user();
 }
 
 function add_event_listeners() {
     var ring_link      = document.getElementById('tilde_town_ring'),
-        rand_box_link  = document.getElementById('random_tildebox');
+        rand_box_link  = document.getElementById('random_tildebox'),
+        ring_link_next = document.getElementById('tilde_town_ring_next');
 
     ring_link.addEventListener('click', link_tilde_ring);
     rand_box_link.addEventListener('click', link_tilde_ring);
+    if (ring_link_next) {
+        ring_link_next.addEventListener('click', link_tilde_ring);
+    }
 }
 
 // get ~user (minus ~)
@@ -53,15 +58,12 @@ function link_random_tildebox() {
     fetchJSONFile( tildeboxlist_urls ,
                    function(data) {
                        var urls = normalize_tilde_urls( obj_values(data) );
-                       
-                       // console.log(urls);
-                       
                        document.getElementById('random_tildebox').href = random_item(urls);
                    });
 }
 
 // TODO: get tildes to store user JSON in standard location?
-function link_random_user() { 
+function link_random_user() {
     fetchJSONFile( userlist_url,
                    function(users) {
                        delete users[user()];
@@ -70,11 +72,21 @@ function link_random_user() {
 
                        // console.log("other ~ring members: ");
                        // console.log(urls);
-                       
+
                        tilde_ring_link.href = random_item(urls);
                    });
 }
 
+function link_next_user() {
+    fetchJSONFile( userlist_url,
+                   function(users) {
+                       var urls = normalize_for_next_user(obj_values(users)),
+                           tilde_ring_link = document.getElementById('tilde_town_ring_next');
+                       if (tilde_ring_link) { // ensure user has next link
+                           tilde_ring_link.href = next_item(urls);
+                       }
+                   });
+}
 
 // "normalizing" tilde urls means removing traling slashes and
 // removing the host from the array
@@ -83,7 +95,7 @@ function normalize_tilde_urls(urls) {
 
     function last(array) {
         return array[array.length - 1];
-    }    
+    }
 
     function trim_trailing_slash(string) {
         return ( (last(string) == "/")
@@ -100,7 +112,7 @@ function normalize_tilde_urls(urls) {
 
 // "normalizing" for a random user means eliminating users who haven't
 // edited their pages and haven't joined the ring
-// and returning the remainder. 
+// and returning the remainder.
 function normalize_for_random_user(users) {
     return users.filter(function(u) {return u.edited && u.ringmember;})
                 .map(function(o) { return o.homepage; });
@@ -108,6 +120,12 @@ function normalize_for_random_user(users) {
     // ring_members = user_props.filter(function(x){ return ; }),
     // member_urls  = ring_members.,
 
+}
+
+function normalize_for_next_user(users) {
+    sorted_users = users.filter(function(u) {return u.edited && u.ringmember;})
+                .map(function(o) { return o.homepage; });
+    return sorted_users.sort()
 }
 
 
@@ -124,6 +142,18 @@ function random_item(items) {
     return items[Math.floor(Math.random()*items.length)];
 }
 
+function next_item(items) {
+    var member_url = strip_trailing_slash(document.URL);
+    for (var i = 0; i < items.length; i++) {
+        if (member_url == items[i]) {
+             var index = i + 1;
+             break;
+        }
+    }
+    if (index > items.length) { index = 0; }
+    return items[index];
+}
+
 // Object {key:values} -> Array [values]
 function obj_values(obj) {
     var values = [];
@@ -133,4 +163,11 @@ function obj_values(obj) {
         }
     }
     return values;
+}
+
+function strip_trailing_slash(str) {
+    if(str.substr(-1) == '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
 }
