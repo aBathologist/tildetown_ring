@@ -11,31 +11,24 @@
   <body>
 
 <h1>join the <a href="http://tilde.town">tilde.town</a> ~ring!</h1>
-<p>Browse <a href="members.html">a list of all the ~ring member</a>.</p>
+<p>Browse <a href="members.html">a list of all the ~ring members</a>.</p>
 <hr>
 <p>tilde.town ~users can join by pasting this html code in their <code>index.html</code>:</p>
-<!-- I think this is probably an awful way to distribute and store the --
-  -- html because any change to the html has to be copied and pasted --
-  -- here. I should probably put in some js code that will copy the --
-  -- html and put it in a text field, then we just update the html and --
-  -- the code to copy-paste will be updated automatically. -->
+<!-- NOTE: the following html, in the xmp block, should be taken as the canonical standard tidle.town ~ring htlm -->
+    <xmp style="background-color:white; font-size:70%; width:850px;">
+      <div id="tilde_ring" style="background-color:white; text-align:center; border-radius:10px;">
+        <p><em>a member of the tilde.town ~ring</em></p>
+        <p> <a id="tilde_town_ring" class="tilde_ring_link" href="">random ~user</a>
+          | <a id="random_tildebox" class="tilde_ring_link" href="">random ~box</a>
+          | <a id="tilde_town_ring_next" class="tilde_ring_link" href="">next ~user</a> </p>
+        <p><a href="http://tilde.town/~um/tilde_ring/join.html">join</a></p>
+        <script type="text/javascript" src="http://tilde.town/~um/tilde_ring/tilde_ring.js"></script>
+      </div>
+    </xmp>
 
-    <pre style="background-color:white; font-size:70%;
-    width:850px;"><code>
-    &lt;div id="tilde_ring" style="background-color:white; text-align:center; border-radius:10px;"&gt;
-      &lt;p&gt;&lt;em&gt;a member of the tilde.town ~ring&lt;/em&gt;&lt;/p&gt;
-      &lt;p&gt; &lt;a id="tilde_town_ring" class="tilde_ring_link" href=""&gt;random ~user&lt;/a&gt;
-        | &lt;a id="random_tildebox" class="tilde_ring_link" href=""&gt;random ~box&lt;/a&gt; &lt;/p&gt;
-      &lt;p&gt;&lt;a href="http://tilde.town/~um/tilde_ring/join.html"&gt;join&lt;/a&gt;&lt;/p&gt;
-      &lt;script type="text/javascript" src="http://tilde.town/~um/js/tilde_ring.js"&gt;&lt;/script&gt;
-    &lt;/div&gt;
-    </code></pre>
-
-    <p>You can alter or edit the html without breaking anything, with the
-      exception of four elements:
+    <p>You can alter or edit the html without breaking anything, except: 
       <ul>
         <li>the random ~user link url and id</li>
-        <li>the random ~box link url and id</li>
         <li>the <code>&lt;script&gt;</code> tag and contents must be
         included somewhere on your page</li>
         <li>the join link url</li>
@@ -50,22 +43,24 @@
 
       <p> Looking for a link to any random tilde.town site? <a href="http://tilde.town/~nick/">~nick</a> has that!</p>
     <p><a href="http://tilde.town/~um">~um<a/> and <a href="http://tilde.town/~dan/">~dan</a></p>
-   <h2>refine, reimplement, or extend the tilde.town ~ring!</h2>
+    <hr>
+   <h3>refine, reimplement, or extend the tilde.town ~ring!</h3>
 
     <p>The ~ring consists of the above html, a javascript file, and
       <a href="http://tilde.town/~dan/">~dan</a>'s python script
       that gathers ~users data into a json file. The code is
       available on our <a href="https://github.com/aBathologist/tildetown_ring">github repository</a>.
       If you have ideas, please suggest, fork, request pulls, etc.</p>
+    <hr>
+
+    <h3>example of the ~ring html, in its default state:</h3>
+      <div id="tilde_ring" style="background-color:white; text-align:center; border-radius:10px;">
+        <p><em>a member of the tilde.town ~ring</em></p>
+        <p> <a id="tilde_town_ring" class="tilde_ring_link" href="">random ~user</a>
+          | <a id="random_tildebox" class="tilde_ring_link" href="">random ~box</a>
+          | <a id="tilde_town_ring_next" class="tilde_ring_link" href="">next ~user</a> </p>
+        <p><a href="http://tilde.town/~um/tilde_ring/join.html">join</a></p>
+        <script type="text/javascript" src="http://tilde.town/~um/tilde_ring/tilde_ring.js"></script>
+      </div>
   </body>
 </html>
-
-<!-- THIS IS WHAT THE CODE LOOKS LIKE -->
-    <!-- <div id="tilde_ring" style="background-color:white; text-align:center; border-radius:10px;"> -->
-    <!--   <p><em>a member of the tilde.town ~ring</em></p> -->
-    <!--   <p> <a id="tilde_town_ring" class="tilde_ring_link" href="">Random ~User</a> -->
-    <!--     | <a id="random_tildebox" class="tilde_ring_link" href="">Random ~Box</a> </p> -->
-    <!--   <p><a href="http://tilde.town/~um/tilde_ring/join.html">Join</a></p> -->
-    <!--   <script type="text/javascript" src="http://tilde.town/~um/js/tilde_ring.js"></script> -->
-    <!-- </div> -->
-
