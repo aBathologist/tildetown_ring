@@ -9,8 +9,8 @@
  *
  * */
 
-var tildeboxlist_urls = 'http://tilde.town/~um/json/othertildes.json';
-var userlist_url = 'http://tilde.town/~dan/users.json';
+var tildeboxlist_urls = 'https://tilde.town/~um/json/othertildes.json';
+var userlist_url = 'https://tilde.town/~dan/users.json';
 
 /*
  *  MAIN FUNCTIONS
