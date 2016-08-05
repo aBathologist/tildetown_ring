@@ -22,7 +22,11 @@
           | <a id="random_tildebox" class="tilde_ring_link" href="">random ~box</a>
           | <a id="tilde_town_ring_next" class="tilde_ring_link" href="">next ~user</a> </p>
         <p><a href="https://tilde.town/~um/tilde_ring/join.html">join</a></p>
-        <script type="text/javascript" src="https://tilde.town/~um/tilde_ring/tilde_ring.js"></script>
+        <script type="text/javascript">
+          var ringjs = document.createElement('script')
+          ringjs.src = document.location.protocol + '//tilde.town/~um/tilde_ring/tilde_ring.js'
+          document.getElementById('tilde_ring').appendChild(ringjs)
+        </script>
       </div>
     </xmp>
 
