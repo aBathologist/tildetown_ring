@@ -14,7 +14,7 @@ var userlist_url = document.location.protocol + '//tilde.town/~dan/users.json';
 
 /*
  *  MAIN FUNCTIONS
- * 
+ *
  * */
 
 // run when page is loaded
@@ -29,7 +29,7 @@ function add_event_listeners() {
         ring_link_next = document.getElementById('tilde_town_ring_next');
 
     ring_link_rand.addEventListener('click', link_tilde_ring);
-    
+
     add_tilde_ring_listener_if_present( rand_box_link );
     add_tilde_ring_listener_if_present( ring_link_next );
 }
@@ -61,15 +61,20 @@ function link_users() {
 
                        var user_url = users[user()].homepage,
                            urls     = normalized_user_urls(obj_values(users)),
-                           
+
                            random_user_link = document.getElementById('tilde_town_ring'),
                            next_user_link   = document.getElementById('tilde_town_ring_next');
 
-                       random_user_link.href = random_item(remove(urls, user_url));
+                       console.log(urls)
                        if (next_user_link) { // ensure user has next link
                            next_user_link.href = next_item(user_url, urls);
                        }
+                       random_user_link.href = random_item(remove(urls, user_url));
 
+                       console.log(users)
+                       console.log(user_url)
+                       console.log(next_item(user_url, urls))
+                       console.log(urls)
                    });
 }
 
@@ -137,7 +142,7 @@ function fetchJSONFile(path, callback) {
         }
     };
     httpRequest.open('GET', path);
-    httpRequest.send(); 
+    httpRequest.send();
 }
 
 // Object {key:values} -> Array [values]
@@ -182,6 +187,6 @@ function next_item(item, items) {
                      ? 0
                      : item_index + 1
                      ;
-                    
+
     return items[next_index];
 }
