@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import grp
 import json
 import hashlib
@@ -39,7 +39,7 @@ def get_users():
 
             # determines whether the file has been edited
             hash = hashlib.new('sha256')
-            with open(index) as f:
+            with open(index, 'rb') as f:
                 hash.update(f.read())
                 if hash.hexdigest() in UNEDITED_INDEX_DIGESTS:
                     edited = 0
@@ -54,7 +54,7 @@ def get_users():
             else:
                 ringmember = 0
 
-        except Exception, e:
+        except Exception:
             continue  # Ignore error. Continue to next user.
 
         # Adds username as a key to the dictionary
@@ -67,4 +67,4 @@ def get_users():
     return json.dumps(users, indent=4)
 
 if __name__ == "__main__":
-    print get_users()
+    print(get_users())
